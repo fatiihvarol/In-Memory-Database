@@ -1,7 +1,9 @@
-namespace WebApi.Common{
-    public enum JobEnum{
-        ComputerEngineer = 1,
-        HouseKeeper,
+namespace WebApi.Common
+{
+    public enum JobEnum
+    {
+        Computer_Engineer = 1,
+        House_Keeper,
         Dentist
     }
 }

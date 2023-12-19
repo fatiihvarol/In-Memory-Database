@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DbOperations;
+using WebApi.UserOperations.CreateUser;
 using WebApi.UserOperations.GetUserQuery;
 
-namespace WebApi.Controllers{
+namespace WebApi.Controllers
+{
     [ApiController]
     [Route("api/[controller]")]
 
-    public class UserController : ControllerBase{
+    public class UserController : ControllerBase
+    {
         private readonly ILogger<UserController> _logger;
         private readonly UserDbContext _dbContext; // Inject your DbContext
 
@@ -20,36 +23,35 @@ namespace WebApi.Controllers{
         [HttpGet]
         public IActionResult GetUsers()
         {
-        GetUserQuery getUserQuery = new GetUserQuery(_dbContext);
-        var users=getUserQuery.Handle();
-        return Ok(users);
+            GetUserQuery getUserQuery = new GetUserQuery(_dbContext);
+            var users = getUserQuery.Handle();
+            return Ok(users);
         }
 
 
         [HttpPost]
-        public IActionResult AddUser([FromBody] User newUser)
+        public IActionResult CreateUser([FromBody] CreateUserModel createUserModel)
         {
-            // Check if a user with the same properties already exists
-            var existingUser = _dbContext.Users.FirstOrDefault(u =>
-                u.Name == newUser.Name && u.Age == newUser.Age);
+            CreateUserCommand createUserCommand = new CreateUserCommand(_dbContext);
 
-            if (existingUser != null)
+            try
             {
-                return Conflict("User with the same properties already exists");
+                createUserCommand.Model = createUserModel;
+                createUserCommand.Handle();
+                return Ok(createUserModel);
             }
+            catch (Exception ex)
+            {
 
-            // Add the new user to the database
-            _dbContext.Users.Add(newUser);
-            _dbContext.SaveChanges();
-
-            // Return a success response
-            return Ok(newUser+"User added");
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id){
-            var existingUser = _dbContext.Users.FirstOrDefault(u=> u.Id==id);
-            if (existingUser is  null)
+        public IActionResult Delete(int id)
+        {
+            var existingUser = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+            if (existingUser is null)
             {
                 return Conflict("User not exist");
             }
@@ -60,18 +62,20 @@ namespace WebApi.Controllers{
         }
 
         [HttpPut]
-        public IActionResult UpdateUser([FromBody]User user){
-            var existuser = _dbContext.Users.FirstOrDefault(u=> u.Id==user.Id);
-            if(existuser is  null){
+        public IActionResult UpdateUser([FromBody] User user)
+        {
+            var existuser = _dbContext.Users.FirstOrDefault(u => u.Id == user.Id);
+            if (existuser is null)
+            {
                 return Conflict("User does not exist");
             }
-                existuser.Age=user.Age;
-                existuser.Name=user.Name;
-                _dbContext.Users.Update(existuser);
-                _dbContext.SaveChanges();
-                return Ok();
+            existuser.Age = user.Age;
+            existuser.Name = user.Name;
+            _dbContext.Users.Update(existuser);
+            _dbContext.SaveChanges();
+            return Ok();
         }
-         
+
     }
 
 }
