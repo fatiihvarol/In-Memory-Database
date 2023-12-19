@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DbOperations;
+using WebApi.UserOperations.GetUserQuery;
 
 namespace WebApi.Controllers{
     [ApiController]
@@ -15,14 +16,16 @@ namespace WebApi.Controllers{
             _dbContext = dbContext;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            
-          var users = _dbContext.Users.ToList();
-          return Ok(users);
 
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+        GetUserQuery getUserQuery = new GetUserQuery(_dbContext);
+        var users=getUserQuery.Handle();
+        return Ok(users);
         }
+
+
         [HttpPost]
         public IActionResult AddUser([FromBody] User newUser)
         {
