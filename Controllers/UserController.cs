@@ -83,6 +83,8 @@ namespace WebApi.Controllers
 
             try
             {
+                DeleteUserCommandValidator validation = new DeleteUserCommandValidator();
+                validation.ValidateAndThrow(deleteUserCommand);
                 deleteUserCommand.Handle();
                 return Ok("User deleted");
             }
