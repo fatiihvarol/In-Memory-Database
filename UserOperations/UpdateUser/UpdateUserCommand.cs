@@ -6,7 +6,7 @@ namespace WebApi.UserOperations.UpdateUser
     public class UpdateUserCommand
     {
         private readonly UserDbContext _userDbContext;
-        public UpdateUserModel UpdateUserModel = new UpdateUserModel();
+        public UpdateUserModel? UpdateUserModel { get; set; }
         public int UserId { get; set; }
 
         public UpdateUserCommand(UserDbContext userDbContext)
