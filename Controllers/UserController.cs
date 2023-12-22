@@ -102,8 +102,10 @@ namespace WebApi.Controllers
             UpdateUserCommand updateUserCommand = new UpdateUserCommand(_dbContext, _mapper);
             try
             {
+                UpdateUserCommandValidation validation = new UpdateUserCommandValidation();
                 updateUserCommand.UpdateUserModel = updateUserModel;
                 updateUserCommand.UserId = id;
+                validation.ValidateAndThrow(updateUserCommand);
                 updateUserCommand.Handle();
                 return Ok("User updated");
             }
