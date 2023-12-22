@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
-            GetUserDetailQuery getUserDetailQuery = new GetUserDetailQuery(_dbContext);
+            GetUserDetailQuery getUserDetailQuery = new GetUserDetailQuery(_dbContext, _mapper);
             getUserDetailQuery.UserId = id;
             try
             {
@@ -93,7 +93,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateUser([FromBody] UpdateUserModel updateUserModel, int id)
         {
-            UpdateUserCommand updateUserCommand = new UpdateUserCommand(_dbContext);
+            UpdateUserCommand updateUserCommand = new UpdateUserCommand(_dbContext, _mapper);
             try
             {
                 updateUserCommand.UpdateUserModel = updateUserModel;
