@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApi.DbOperations;
 using WebApi.UserOperations.CreateUser;
+using WebApi.UserOperations.GetBookDetail;
 using WebApi.UserOperations.GetUserQuery;
 
 namespace WebApi.Controllers
@@ -26,6 +28,23 @@ namespace WebApi.Controllers
             GetUserQuery getUserQuery = new GetUserQuery(_dbContext);
             var users = getUserQuery.Handle();
             return Ok(users);
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetUserById(int id)
+        {
+            GetBookDetailQuery getBookDetailQuery = new GetBookDetailQuery(_dbContext);
+            getBookDetailQuery.UserId = id;
+            try
+            {
+                var user = getBookDetailQuery.Handle();
+                return Ok(user);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+
         }
 
 
