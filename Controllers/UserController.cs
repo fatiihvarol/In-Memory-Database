@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.DbOperations;
@@ -15,12 +16,14 @@ namespace WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
+        private readonly IMapper _mapper;
         private readonly UserDbContext _dbContext; // Inject your DbContext
 
-        public UserController(ILogger<UserController> logger, UserDbContext dbContext)
+        public UserController(ILogger<UserController> logger, UserDbContext dbContext, IMapper mapper)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
 
@@ -53,7 +56,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult CreateUser([FromBody] CreateUserModel createUserModel)
         {
-            CreateUserCommand createUserCommand = new CreateUserCommand(_dbContext);
+            CreateUserCommand createUserCommand = new CreateUserCommand(_dbContext, _mapper);
 
             try
             {

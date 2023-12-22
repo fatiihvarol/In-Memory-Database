@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.DbOperations;
 
 namespace WebApi.UserOperations.CreateUser
@@ -5,11 +6,13 @@ namespace WebApi.UserOperations.CreateUser
     public class CreateUserCommand
     {
         private readonly UserDbContext _userDbContext;
+        private readonly IMapper _mapper;
         public CreateUserModel Model = new CreateUserModel();
 
-        public CreateUserCommand(UserDbContext userDbContext)
+        public CreateUserCommand(UserDbContext userDbContext, IMapper mapper)
         {
             _userDbContext = userDbContext;
+            _mapper = mapper;
         }
 
         public void Handle()
@@ -20,12 +23,13 @@ namespace WebApi.UserOperations.CreateUser
             if (user != null)
                 throw new InvalidDataException("User with the same properties already exists");
 
-            user = new User
+            user = _mapper.Map<User>(Model);
+            /*user = new User
             {
                 Age = Model.Age,
                 JobId = Model.JobId,
                 Name = Model.Name
-            };
+            };*/
 
             _userDbContext.Users.Add(user);
             _userDbContext.SaveChanges();

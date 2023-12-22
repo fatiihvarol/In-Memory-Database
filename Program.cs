@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +13,8 @@ builder.Services.AddControllers();
 // Configure Entity Framework Core with In-Memory Database
 builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseInMemoryDatabase("UserDataBase"));
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
