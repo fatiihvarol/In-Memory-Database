@@ -32,11 +32,11 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
-            GetBookDetailQuery getBookDetailQuery = new GetBookDetailQuery(_dbContext);
-            getBookDetailQuery.UserId = id;
+            GetUserDetailQuery getUserDetailQuery = new GetUserDetailQuery(_dbContext);
+            getUserDetailQuery.UserId = id;
             try
             {
-                var user = getBookDetailQuery.Handle();
+                var user = getUserDetailQuery.Handle();
                 return Ok(user);
             }
             catch (Exception e)
