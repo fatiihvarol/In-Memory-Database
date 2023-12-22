@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.DbOperations;
 using WebApi.UserOperations.CreateUser;
+using WebApi.UserOperations.DeleteUserCommand;
 using WebApi.UserOperations.GetBookDetail;
 using WebApi.UserOperations.GetUserQuery;
 
@@ -69,14 +70,19 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var existingUser = _dbContext.Users.FirstOrDefault(u => u.Id == id);
-            if (existingUser is null)
+            DeleteUserCommand deleteUserCommand = new DeleteUserCommand(_dbContext)
+            { UserId = id };
+
+            try
             {
-                return Conflict("User not exist");
+                deleteUserCommand.Handle();
+                return Ok("User deleted");
             }
-            _dbContext.Users.Remove(existingUser);
-            _dbContext.SaveChanges();
-            return Ok();
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
 
         }
 
