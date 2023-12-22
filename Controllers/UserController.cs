@@ -1,11 +1,10 @@
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using WebApi.DbOperations;
 using WebApi.UserOperations.CreateUser;
 using WebApi.UserOperations.DeleteUserCommand;
-using WebApi.UserOperations.GetBookDetail;
+using WebApi.UserOperations.GetUserDetail;
 using WebApi.UserOperations.GetUserQuery;
 using WebApi.UserOperations.UpdateUser;
 
@@ -39,10 +38,14 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
-            GetUserDetailQuery getUserDetailQuery = new GetUserDetailQuery(_dbContext, _mapper);
-            getUserDetailQuery.UserId = id;
+            GetUserDetailQuery getUserDetailQuery = new GetUserDetailQuery(_dbContext, _mapper)
+            {
+                UserId = id
+            };
             try
             {
+                GetUserDetailQueryValidation validation = new GetUserDetailQueryValidation();
+                validation.ValidateAndThrow(getUserDetailQuery);
                 var user = getUserDetailQuery.Handle();
                 return Ok(user);
             }

@@ -4,7 +4,7 @@ using System.Linq;
 using WebApi.Common;
 using WebApi.DbOperations;
 
-namespace WebApi.UserOperations.GetBookDetail
+namespace WebApi.UserOperations.GetUserDetail
 {
     public class GetUserDetailQuery
     {

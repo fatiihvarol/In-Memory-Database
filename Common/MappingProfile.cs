@@ -1,6 +1,6 @@
 using AutoMapper;
 using WebApi.UserOperations.CreateUser;
-using WebApi.UserOperations.GetBookDetail;
+using WebApi.UserOperations.GetUserDetail;
 using WebApi.UserOperations.GetUserQuery;
 using WebApi.UserOperations.UpdateUser;
 
