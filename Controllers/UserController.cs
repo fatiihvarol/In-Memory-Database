@@ -5,6 +5,7 @@ using WebApi.UserOperations.CreateUser;
 using WebApi.UserOperations.DeleteUserCommand;
 using WebApi.UserOperations.GetBookDetail;
 using WebApi.UserOperations.GetUserQuery;
+using WebApi.UserOperations.UpdateUser;
 
 namespace WebApi.Controllers
 {
@@ -86,19 +87,23 @@ namespace WebApi.Controllers
 
         }
 
-        [HttpPut]
-        public IActionResult UpdateUser([FromBody] User user)
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser([FromBody] UpdateUserModel updateUserModel, int id)
         {
-            var existuser = _dbContext.Users.FirstOrDefault(u => u.Id == user.Id);
-            if (existuser is null)
+            UpdateUserCommand updateUserCommand = new UpdateUserCommand(_dbContext);
+            try
             {
-                return Conflict("User does not exist");
+                updateUserCommand.UpdateUserModel = updateUserModel;
+                updateUserCommand.UserId = id;
+                updateUserCommand.Handle();
+                return Ok("User updated");
             }
-            existuser.Age = user.Age;
-            existuser.Name = user.Name;
-            _dbContext.Users.Update(existuser);
-            _dbContext.SaveChanges();
-            return Ok();
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+
         }
 
     }
