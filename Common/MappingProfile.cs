@@ -1,5 +1,6 @@
 using AutoMapper;
 using WebApi.UserOperations.CreateUser;
+using WebApi.UserOperations.GetUserQuery;
 
 namespace WebApi.Common
 {
@@ -8,6 +9,8 @@ namespace WebApi.Common
         public MappingProfile()
         {
             CreateMap<CreateUserModel, User>();
+            CreateMap<User, UserViewModel>()
+            .ForMember(dest => dest.Job, opt => opt.MapFrom(src => ((JobEnum)src.JobId).ToString()));
         }
 
     }

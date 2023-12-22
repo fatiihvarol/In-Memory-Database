@@ -1,37 +1,34 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Common;
 using WebApi.DbOperations;
 
 namespace WebApi.UserOperations.GetUserQuery
 {
-    public class GetUserQuery{
+    public class GetUserQuery
+    {
         private readonly UserDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public GetUserQuery(UserDbContext dbContext){
-            _dbContext=dbContext;
+        public GetUserQuery(UserDbContext dbContext, IMapper mapper)
+        {
+            _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public List<UserViewModel> Handle(){
-          var users = _dbContext.Users.ToList();
-          List<UserViewModel> vm = new List<UserViewModel>();
+        public List<UserViewModel> Handle()
+        {
+            var users = _dbContext.Users.ToList();
+            List<UserViewModel> vm = _mapper.Map<List<UserViewModel>>(users);
 
-
-          foreach (var user in users)
-          {
-            vm.Add(new UserViewModel(){
-                Name=user.Name,
-                Age=user.Age,
-                Job=((JobEnum)user.JobId).ToString()
-            });
-            
-          }
-          return vm;
+            return vm;
         }
 
 
-        
+
     }
-    public class UserViewModel(){
+    public class UserViewModel()
+    {
         public string? Name { get; set; }
         public string? Job { get; set; }
         public string? Age { get; set; }

@@ -30,7 +30,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult GetUsers()
         {
-            GetUserQuery getUserQuery = new GetUserQuery(_dbContext);
+            GetUserQuery getUserQuery = new GetUserQuery(_dbContext, _mapper);
             var users = getUserQuery.Handle();
             return Ok(users);
         }
