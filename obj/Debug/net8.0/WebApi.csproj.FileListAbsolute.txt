@@ -71,3 +71,4 @@ C:\Users\fatih\OneDrive\Masaüstü\patika cohort project\In-Memory-Database\obj\
 C:\Users\fatih\OneDrive\Masaüstü\patika cohort project\In-Memory-Database\obj\Debug\net8.0\WebApi.pdb
 C:\Users\fatih\OneDrive\Masaüstü\patika cohort project\In-Memory-Database\obj\Debug\net8.0\WebApi.genruntimeconfig.cache
 C:\Users\fatih\OneDrive\Masaüstü\patika cohort project\In-Memory-Database\obj\Debug\net8.0\ref\WebApi.dll
+C:\Users\fatih\OneDrive\Masaüstü\patika cohort project\In-Memory-Database\bin\Debug\net8.0\FluentValidation.dll

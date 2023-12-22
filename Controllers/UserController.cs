@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.DbOperations;
@@ -16,6 +17,7 @@ namespace WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly ILogger<UserController> _logger;
+
         private readonly IMapper _mapper;
         private readonly UserDbContext _dbContext; // Inject your DbContext
 
@@ -60,7 +62,9 @@ namespace WebApi.Controllers
 
             try
             {
+                CreateUserCommandValidator validation = new CreateUserCommandValidator();
                 createUserCommand.Model = createUserModel;
+                validation.ValidateAndThrow(createUserCommand);
                 createUserCommand.Handle();
                 return Ok(createUserModel);
             }

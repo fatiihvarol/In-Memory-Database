@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "grwzbEcalPpFmxAMioLeGo+QA2u9za+zpJBX47QQMmhe8/fwqncoRU0e1WF5DhGgjI/ibhut4CvvPpxqdtdaEA==",
+  "dgSpecHash": "P0GmhqtZnsqS1gT1ZZ0B7ZPflp1Ppvx/GA8nLU0m2fFBHY5A/BHW+Zeb6bmUlMeDLBnj8QEbKk5T6EkIpaJ5Fw==",
   "success": true,
   "projectFilePath": "C:\\Users\\fatih\\OneDrive\\Masaüstü\\patika cohort project\\In-Memory-Database\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fatih\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\fatih\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0\\microsoft.entityframeworkcore.8.0.0.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0\\microsoft.entityframeworkcore.abstractions.8.0.0.nupkg.sha512",
