@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApi.Controllers;
-using WebApi.DbOperations; // Make sure this is the correct namespace for your DataGenerator
+using WebApi.DbOperations;
+using WebApi.Middlewares; // Make sure this is the correct namespace for your DataGenerator
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseCustomExceptionMiddle();
 //app.UseGlobalLoggingMiddleware();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

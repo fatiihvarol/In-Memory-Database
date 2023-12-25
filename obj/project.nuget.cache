@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "P0GmhqtZnsqS1gT1ZZ0B7ZPflp1Ppvx/GA8nLU0m2fFBHY5A/BHW+Zeb6bmUlMeDLBnj8QEbKk5T6EkIpaJ5Fw==",
+  "dgSpecHash": "G1/T+1CXT5JLQ9r9Lu+qGkrgqX2zOHgFEdi38P8KbLT5We333jWXdt99RUBPZGjbLXtIrUO3+MlmBhsxxNwg6A==",
   "success": true,
   "projectFilePath": "C:\\Users\\fatih\\OneDrive\\Masaüstü\\patika cohort project\\In-Memory-Database\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\fatih\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\fatih\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

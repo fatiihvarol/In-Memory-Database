@@ -42,18 +42,13 @@ namespace WebApi.Controllers
             {
                 UserId = id
             };
-            try
-            {
-                GetUserDetailQueryValidation validation = new GetUserDetailQueryValidation();
-                validation.ValidateAndThrow(getUserDetailQuery);
-                var user = getUserDetailQuery.Handle();
-                return Ok(user);
-            }
-            catch (Exception e)
-            {
 
-                return BadRequest(e.Message);
-            }
+            GetUserDetailQueryValidation validation = new GetUserDetailQueryValidation();
+            validation.ValidateAndThrow(getUserDetailQuery);
+            var user = getUserDetailQuery.Handle();
+            return Ok(user);
+
+
 
         }
 
@@ -63,23 +58,19 @@ namespace WebApi.Controllers
         {
 
 
-            try
-            {
-                CreateUserCommand createUserCommand = new CreateUserCommand(_dbContext, _mapper)
-                {
-                    Model = createUserModel
-                };
-                CreateUserCommandValidator validation = new CreateUserCommandValidator();
 
-                validation.Validate(createUserCommand);
-
-                createUserCommand.Handle();
-                return Ok(createUserModel);
-            }
-            catch (Exception ex)
+            CreateUserCommand createUserCommand = new CreateUserCommand(_dbContext, _mapper)
             {
-                return BadRequest(ex.Message);
-            }
+                Model = createUserModel
+            };
+            CreateUserCommandValidator validation = new CreateUserCommandValidator();
+
+            validation.ValidateAndThrow(createUserCommand);
+
+            createUserCommand.Handle();
+            return Ok(createUserModel);
+
+
         }
 
         [HttpDelete("{id}")]
@@ -88,18 +79,13 @@ namespace WebApi.Controllers
             DeleteUserCommand deleteUserCommand = new DeleteUserCommand(_dbContext)
             { UserId = id };
 
-            try
-            {
-                DeleteUserCommandValidator validation = new DeleteUserCommandValidator();
-                validation.ValidateAndThrow(deleteUserCommand);
-                deleteUserCommand.Handle();
-                return Ok("User deleted");
-            }
-            catch (Exception e)
-            {
 
-                return BadRequest(e.Message);
-            }
+            DeleteUserCommandValidator validation = new DeleteUserCommandValidator();
+            validation.ValidateAndThrow(deleteUserCommand);
+            deleteUserCommand.Handle();
+            return Ok("User deleted");
+
+
 
         }
 
@@ -107,20 +93,15 @@ namespace WebApi.Controllers
         public IActionResult UpdateUser([FromBody] UpdateUserModel updateUserModel, int id)
         {
             UpdateUserCommand updateUserCommand = new UpdateUserCommand(_dbContext, _mapper);
-            try
-            {
-                UpdateUserCommandValidation validation = new UpdateUserCommandValidation();
-                updateUserCommand.UpdateUserModel = updateUserModel;
-                updateUserCommand.UserId = id;
-                validation.ValidateAndThrow(updateUserCommand);
-                updateUserCommand.Handle();
-                return Ok("User updated");
-            }
-            catch (Exception e)
-            {
 
-                return BadRequest(e.Message);
-            }
+            UpdateUserCommandValidation validation = new UpdateUserCommandValidation();
+            updateUserCommand.UpdateUserModel = updateUserModel;
+            updateUserCommand.UserId = id;
+            validation.ValidateAndThrow(updateUserCommand);
+            updateUserCommand.Handle();
+            return Ok("User updated");
+
+
 
         }
 

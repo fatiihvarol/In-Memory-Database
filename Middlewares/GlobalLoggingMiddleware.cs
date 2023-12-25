@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
+namespace WebApi.Middlewares;
 public class GlobalLoggingMiddleware
 {
     private readonly RequestDelegate _next;
@@ -41,7 +42,7 @@ public class GlobalLoggingMiddleware
         requestBodyStream.Seek(0, SeekOrigin.Begin);
         var requestBody = await new StreamReader(requestBodyStream).ReadToEndAsync();
 
-        _logger.LogInformation($"Request: {request.Method} {request.Path} {request.QueryString} {requestBody}");
+        _logger.LogInformation($"Request: {request.Method} {request.Path} ");
 
         // Restore the original request body
         request.Body = originalRequestBody;
@@ -54,7 +55,7 @@ public class GlobalLoggingMiddleware
     private void LogResponse(HttpResponse response)
     {
         // Log the response status code and headers
-        _logger.LogInformation($"Response: {response.StatusCode}");
+        _logger.LogInformation($"Response: {response}");
     }
 }
 
