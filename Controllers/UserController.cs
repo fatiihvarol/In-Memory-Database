@@ -61,19 +61,23 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult CreateUser([FromBody] CreateUserModel createUserModel)
         {
-            CreateUserCommand createUserCommand = new CreateUserCommand(_dbContext, _mapper);
+
 
             try
             {
+                CreateUserCommand createUserCommand = new CreateUserCommand(_dbContext, _mapper)
+                {
+                    Model = createUserModel
+                };
                 CreateUserCommandValidator validation = new CreateUserCommandValidator();
-                createUserCommand.Model = createUserModel;
-                validation.ValidateAndThrow(createUserCommand);
+
+                validation.Validate(createUserCommand);
+
                 createUserCommand.Handle();
                 return Ok(createUserModel);
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }

@@ -8,13 +8,14 @@ namespace WebApi.UserOperations.UpdateUser
     {
         private readonly UserDbContext _userDbContext;
         private readonly IMapper _mapper;
-        public UpdateUserModel? UpdateUserModel { get; set; }
+        public UpdateUserModel UpdateUserModel { get; set; }
         public int UserId { get; set; }
 
         public UpdateUserCommand(UserDbContext userDbContext, IMapper mapper)
         {
             _userDbContext = userDbContext;
             _mapper = mapper;
+            UpdateUserModel = new UpdateUserModel();
         }
         public void Handle()
         {

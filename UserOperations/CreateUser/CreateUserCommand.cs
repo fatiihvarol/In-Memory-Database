@@ -7,34 +7,34 @@ namespace WebApi.UserOperations.CreateUser
     {
         private readonly UserDbContext _userDbContext;
         private readonly IMapper _mapper;
-        public CreateUserModel Model = new CreateUserModel();
+        public CreateUserModel Model { get; set; }
 
         public CreateUserCommand(UserDbContext userDbContext, IMapper mapper)
         {
             _userDbContext = userDbContext;
             _mapper = mapper;
+            Model = new CreateUserModel();
+
         }
 
         public void Handle()
         {
+            if (Model == null)
+                throw new ArgumentNullException(nameof(Model), "Model is null");
             // Check if a user with the same properties already exists
             var user = _userDbContext.Users.FirstOrDefault(u => u.Name == Model.Name);
 
             if (user != null)
                 throw new InvalidDataException("User with the same properties already exists");
 
+
             user = _mapper.Map<User>(Model);
-            /*user = new User
-            {
-                Age = Model.Age,
-                JobId = Model.JobId,
-                Name = Model.Name
-            };*/
+
 
             _userDbContext.Users.Add(user);
             _userDbContext.SaveChanges();
 
-            // Return a success response
+
         }
 
     }
