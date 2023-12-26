@@ -4,7 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApi.Controllers;
 using WebApi.DbOperations;
-using WebApi.Middlewares; // Make sure this is the correct namespace for your DataGenerator
+using WebApi.Middlewares;
+using WebApi.Services; // Make sure this is the correct namespace for your DataGenerator
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,9 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Logger Service Injection
+builder.Services.AddSingleton<ILoggerService, ConsoleLogger>();
+
 var app = builder.Build();
 app.UseCustomExceptionMiddle();
 //app.UseGlobalLoggingMiddleware();
@@ -34,6 +38,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+
 
 
 // Seed In-Memory Database with Sample Data
