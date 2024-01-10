@@ -11,7 +11,7 @@ namespace WebApiUnitTest.Application.UserOperations.UpdateUser
         [InlineData(0, "ValidName", "25", 2)] // UserId is not greater than 0
         [InlineData(1, "ValidName", "", 2)]    // Age is empty
         [InlineData(1, "ValidName", "25", 0)]  // JobId is not greater than 0
-        [InlineData(1, "ValidName", "25", 4)]  // JobId is greater than 3
+        [InlineData(1, "ValidName", "25", 4)]  
         public void ShouldHaveErrorsForInvalidData(int userId, string name, string age, int jobId)
         {
             // Arrange
