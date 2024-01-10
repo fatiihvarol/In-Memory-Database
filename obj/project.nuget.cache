@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G1/T+1CXT5JLQ9r9Lu+qGkrgqX2zOHgFEdi38P8KbLT5We333jWXdt99RUBPZGjbLXtIrUO3+MlmBhsxxNwg6A==",
+  "dgSpecHash": "eivG5JgDSHQyxC1H9wgrmsQ0ZvFea7z0ML1AWjU3jG+TrOuPqpy6dJDzT64nNooODp0vCur7WaV7pK1YL4+1kA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fatih\\OneDrive\\Masaüstü\\patika cohort project\\In-Memory-Database\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\fatih\\RiderProjects\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fatih\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\fatih\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
